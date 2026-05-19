@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-
+# pylint: disable=too-few-public-methods
 class TicketResponse(BaseModel):
 
     id: int

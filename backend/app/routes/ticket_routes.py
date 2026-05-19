@@ -1,6 +1,7 @@
 from typing import List
 from fastapi import APIRouter
 from fastapi import HTTPException
+from app.kafka.producer import send_ticket
 
 
 from app.schemas.ticket_schemas import (
@@ -41,6 +42,13 @@ def process_ticket(ticket: TicketRequest):
         db.add(new_ticket)
         db.commit()
         db.refresh(new_ticket)
+
+        send_ticket({
+            "message":ticket.message,
+            "category":category,
+            "sentiment":sentiment,
+            "priority":priority
+        })
 
         return {
             "id":new_ticket.id,
