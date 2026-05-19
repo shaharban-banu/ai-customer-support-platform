@@ -1,6 +1,6 @@
-from transformers import pipeline
+# from transformers import pipeline
 
-sentiment_pipeline=pipeline("sentiment-analysis")
+# sentiment_pipeline=pipeline("sentiment-analysis")
 
 #summarizer=pipeline("summarization",model="sshleifer/distilbart-cnn-12-6")
 
@@ -23,10 +23,14 @@ def classify_ticket(message:str):
 
 
 def analyze_sentiment(message: str):
+    negative_words=["bad","terrible","failed","worst","angry","issue","problem"]
+    if any(word in message.lower()  for word in negative_words):
+        return "Negative"
+    return "Positive"
 
-    result = sentiment_pipeline(message)
+    # result = sentiment_pipeline(message)
 
-    return result[0]["label"]
+    # return result[0]["label"]
 
 
 def predict_priority(message: str):
