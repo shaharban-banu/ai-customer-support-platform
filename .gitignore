@@ -1,55 +1,40 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
 # Virtual Environment
 venv/
 env/
 
-# SQLite
-*.db
-
-# Environment Variables
-.env
-
-# VS Code
-.vscode/
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
 # Pytest
 .pytest_cache/
 
-# Pylint
-.pylint.d/
+# SQLite Database
+*.db
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env
 
 # Logs
 *.log
 
+# Mac/Linux junk
+.DS_Store
+
 # Docker
 docker-data/
 
-# OS Files
-.DS_Store
-Thumbs.db
+# Coverage reports
+htmlcov/
+.coverage
+
+# Pylint cache
+.pylint.d/
 
 # Jupyter
 .ipynb_checkpoints/
-
-# Build Files
-dist/
-build/
-
-# Coverage
-.coverage
-htmlcov/
-
-# Node Modules
-node_modules/
-
-# React Build
-frontend/build/
-
-# Temporary Files
-*.tmp
-*.bak
