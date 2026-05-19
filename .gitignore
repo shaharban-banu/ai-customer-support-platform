@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+
+# SQLite
+*.db
+
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Pylint
+.pylint.d/
+
+# Logs
+*.log
+
+# Docker
+docker-data/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build Files
+dist/
+build/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Node Modules
+node_modules/
+
+# React Build
+frontend/build/
+
+# Temporary Files
+*.tmp
+*.bak

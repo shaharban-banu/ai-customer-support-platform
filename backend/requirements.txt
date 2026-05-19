@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+scikit-learn==1.2.1
+pandas
+transformers
+torch
+python-multipart
+sqlalchemy
+pytest
+pylint
+httpx
+kafka-python
+prometheus-fastapi-instrumentator
