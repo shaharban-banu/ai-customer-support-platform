@@ -2,11 +2,16 @@
 
 A cloud-native AI-powered customer support intelligence platform built using FastAPI, Kafka, Docker, Kubernetes, Helm, GitHub Actions CI/CD, Prometheus, Grafana, and React.
 
+
 This platform automates customer support ticket analysis by performing:
 
+
 Ticket classification
+
 Sentiment analysis
+
 Priority prediction
+
 Ticket summarization
 Real-time Kafka event streaming
 Monitoring and observability
