@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: customer-support-backend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+
+      containers:
+
+        - name: backend
+
+          image: "shahbanu/customer-support-ai:v1"
+
+          imagePullPolicy: Always
+
+          ports:
+            - name : http
+              containerPort: 8000
