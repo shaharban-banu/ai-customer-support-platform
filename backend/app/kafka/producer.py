@@ -1,5 +1,7 @@
 import json
+import time
 from kafka import KafkaProducer
+from kafka.errors import NoBrokersAvailable
 
 def send_ticket(data):
 
@@ -21,11 +23,11 @@ def send_ticket(data):
 
         print("message send to kafka..")
 
-    except Exception as error:
+    except NoBrokersAvailable:
 
         print("Kafka unavailable")
+        time.sleep(5)
 
-        print(error)
 
 # def get_producer():
 

@@ -2,6 +2,7 @@ import json
 import time
 
 from kafka import KafkaConsumer
+from kafka.errors import NoBrokersAvailable
 
 consumer = None
 
@@ -28,9 +29,7 @@ while consumer is None:
 
         print("connected to kafka..")
 
-    except Exception as error:
-
-        print(error)
+    except NoBrokersAvailable:
 
         print("kafka not ready.. retrying")
 
