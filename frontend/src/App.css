@@ -1,0 +1,136 @@
+body {
+
+  margin: 0;
+
+  background-color: #0f172a;
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+}
+
+
+.container {
+
+  width: 80%;
+
+  margin: auto;
+
+  padding-top: 30px;
+}
+
+
+h1 {
+
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+
+.form-container {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 40px;
+}
+
+
+textarea {
+
+  padding: 15px;
+
+  font-size: 16px;
+
+  border-radius: 10px;
+
+  border: none;
+}
+
+
+button {
+
+  width: 200px;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  background-color: #2563eb;
+
+  color: white;
+}
+
+
+button:hover {
+
+  opacity: 0.9;
+}
+
+
+.tickets {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  max-height: 600px;
+
+  overflow-y: auto;
+}
+
+
+.ticket-card {
+
+  background-color: #1e293b;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+.positive {
+
+  color: #22c55e;
+
+  font-weight: bold;
+}
+
+
+.negative {
+
+  color: #ef4444;
+
+  font-weight: bold;
+}
+
+
+.high {
+
+  color: #ef4444;
+
+  font-weight: bold;
+}
+
+
+.medium {
+
+  color: #f59e0b;
+
+  font-weight: bold;
+}
