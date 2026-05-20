@@ -13,12 +13,19 @@ Sentiment analysis
 Priority prediction
 
 Ticket summarization
+
 Real-time Kafka event streaming
+
 Monitoring and observability
+
 Kubernetes deployment with Helm
+
 Automated CI/CD pipelines
+
 🚀 Features
+
 AI Features
+
 Automatic ticket classification
 Sentiment analysis
 Priority prediction
