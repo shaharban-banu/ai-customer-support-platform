@@ -73,22 +73,26 @@ Priority and sentiment visualization
 
 Layer	Technology
 
-Frontend	React + Vite
+Frontend	        React + Vite
 
-Backend	FastAPI
+Backend	          FastAPI
 
-Database	SQLite
+Database	        SQLite
 
-Streaming	Kafka KRaft
+Streaming	        Kafka KRaft
 
 Containerization	Docker
 
-Orchestration	Kubernetes
+Orchestration	    Kubernetes
 
-Packaging	Helm
+Packaging	        Helm
 
-CI/CD	GitHub Actions
-Monitoring	Prometheus + Grafana
-API Testing	Swagger UI
-Testing	pytest
-Code Quality	pylint
+CI/CD	            GitHub Actions
+
+Monitoring	      Prometheus + Grafana
+
+API Testing	      Swagger UI
+
+Testing	          pytest
+
+Code Quality	    pylint
