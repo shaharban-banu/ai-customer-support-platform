@@ -24,39 +24,69 @@ Automated CI/CD pipelines
 
 🚀 Features
 
-AI Features
+1 . AI Features
 
 Automatic ticket classification
+
 Sentiment analysis
+
 Priority prediction
+
 Ticket summarization
-Backend Features
+
+2 . Backend Features
+
 REST APIs using FastAPI
+
 SQLite database integration
+
 Kafka producer and consumer
+
 Real-time event streaming
-DevOps & MLOps Features
+
+3 . DevOps & MLOps Features
+
 Docker containerization
+
 Kubernetes deployment
+
 Helm chart packaging
+
 GitHub Actions CI/CD
+
 Prometheus metrics collection
+
 Grafana dashboards
-Frontend Features
+
+4 . Frontend Features
+
 React + Vite dashboard
+
 Ticket submission UI
+
 Live ticket display
+
 Priority and sentiment visualization
 
+
 🛠️ Tech Stack
+
 Layer	Technology
+
 Frontend	React + Vite
+
 Backend	FastAPI
+
 Database	SQLite
+
 Streaming	Kafka KRaft
+
 Containerization	Docker
+
 Orchestration	Kubernetes
+
 Packaging	Helm
+
 CI/CD	GitHub Actions
 Monitoring	Prometheus + Grafana
 API Testing	Swagger UI
