@@ -23,7 +23,23 @@ def classify_ticket(message:str):
 
 
 def analyze_sentiment(message: str):
-    negative_words=["bad","terrible","failed","worst","angry","issue","problem"]
+    negative_words=[
+            "bad",
+            "terrible",
+            "failed",
+            "worst",
+            "angry",
+            "issue",
+            "problem",
+            "refund",
+            "delayed",
+            "delay",
+            "not received",
+            "broken",
+            "error",
+            "late",
+            "complaint"
+            ]
     if any(word in message.lower()  for word in negative_words):
         return "Negative"
     return "Positive"

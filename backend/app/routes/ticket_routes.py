@@ -63,10 +63,10 @@ def process_ticket(ticket: TicketRequest):
         db.close()
 
 @router.get('/tickets',response_model=List[TicketResponse])
-def get_tickets(skip:int=0,limit:int=10):
+def get_tickets(limit:int=5):
     db=SessionLocal()
     try:
-        tickets=db.query(Ticket).offset(skip).limit(limit).all()
+        tickets=db.query(Ticket).order_by(Ticket.id.desc()).limit(limit).all()
         return tickets
     finally:
         db.close()

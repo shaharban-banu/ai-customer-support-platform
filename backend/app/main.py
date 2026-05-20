@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 from app.routes.ticket_routes import (router)
 from app.database.database import engine
@@ -7,6 +8,18 @@ from app.database.models import Base
 Base.metadata.create_all(bind=engine)
 
 app=FastAPI(title="Customer Support AI")
+
+app.add_middleware(
+    CORSMiddleware,
+
+    allow_origins=["*"],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+)
 
 Instrumentator().instrument(app).expose(app)
 
