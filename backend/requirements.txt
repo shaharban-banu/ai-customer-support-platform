@@ -5,5 +5,5 @@ sqlalchemy
 pytest
 pylint
 httpx
-kafka-python
+kafka-python==2.0.2
 prometheus-fastapi-instrumentator
