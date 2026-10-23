@@ -1,112 +1,230 @@
 # AI-Powered Customer Support Intelligence Platform
 
-A cloud-native AI-powered customer support intelligence platform built using FastAPI, Kafka, Docker, Kubernetes, Helm, GitHub Actions CI/CD, Prometheus, Grafana, and React.It automatically analyzes customer support tickets using machine learning and NLP, providing ticket classification, sentiment analysis, priority prediction, and intelligent summarization.
+A cloud-native customer support platform built with **React, FastAPI, SQLite, Apache Kafka, Docker, Kubernetes, Helm, GitHub Actions, and Prometheus**.
 
-🚀 Overview
+The project provides a foundation for managing support tickets, deriving structured ticket insights, processing ticket events, and monitoring backend API performance.
 
-Customer support teams receive large volumes of tickets containing unstructured customer messages. Manually analyzing these tickets can be time-consuming and inconsistent.
+## Overview
 
-This platform automates the initial analysis of incoming support tickets and provides structured insights such as:
+Customer support teams receive messages about payments, refunds, account access, deliveries, and technical issues. This project aims to organize ticket information and automate initial ticket analysis while providing a deployable and monitorable application architecture.
 
-🎯 Ticket category
-😊 Customer sentiment
-🚨 Ticket priority
-📝 Ticket summary
-⚡ Real-time ticket events
+### Key Features
 
-The system is designed as a modular architecture where the AI inference layer, backend API, streaming layer, frontend, and monitoring stack work together.
+- REST API development using FastAPI
+- Ticket persistence using SQLite and SQLAlchemy
+- Rule-based ticket categorization
+- Keyword-based sentiment detection
+- Rule-based priority prediction
+- Basic text summarization
+- Kafka-based ticket event streaming
+- React + Vite frontend
+- Docker containerization and Docker Compose
+- Kubernetes manifests and Helm chart resources
+- GitHub Actions CI pipeline
+- Prometheus metrics instrumentation
+- Automated testing with pytest
+- Code-quality checks with Pylint
 
+## Technology Stack
 
-This platform automates customer support ticket analysis by performing:
+| Component | Technology |
+|---|---|
+| Frontend | React, Vite |
+| Backend | Python, FastAPI |
+| Database | SQLite, SQLAlchemy |
+| Event streaming | Apache Kafka, KRaft |
+| Containerization | Docker, Docker Compose |
+| Orchestration | Kubernetes |
+| Packaging | Helm |
+| CI/CD | GitHub Actions |
+| Monitoring | Prometheus |
+| Testing | pytest |
+| Code quality | Pylint |
+| API documentation | FastAPI Swagger UI |
 
+## Architecture
 
-Ticket classification
+```text
+React + Vite Frontend
+         |
+         v
+    FastAPI Backend
+      /         \\
+     v           v
+ SQLite DB    Kafka Producer
+                  |
+                  v
+           support-tickets
+                  |
+                  v
+            Kafka Consumer
 
-Sentiment analysis
+FastAPI --> Prometheus Metrics
+GitHub Actions --> Tests and Docker Image Build/Push
+Kubernetes + Helm --> Deployment Resources
+```
 
-Priority prediction
+> **Note:** The diagram represents the project's major components. The exact connection between Kafka consumption and ticket analysis should be verified in the implementation before describing it as a fully automated processing pipeline.
 
-Ticket summarization
+## Ticket Analysis
 
-Real-time Kafka event streaming
+The backend's `ai_service.py` contains four analysis functions:
 
-Monitoring and observability
+- **Ticket classification:** Categorizes messages into billing, refund, account, delivery, or technical using keyword rules.
+- **Sentiment detection:** Labels messages Negative when configured negative keywords are present; otherwise, labels them Positive.
+- **Priority prediction:** Assigns high priority when specified urgency keywords are detected; otherwise, assigns medium.
+- **Summary generation:** Returns the first 50 characters of the message.
 
-Kubernetes deployment with Helm
+These functions currently use rule-based logic. Transformer-based sentiment analysis and summarization code is commented out, so the current implementation should not be described as a trained machine-learning inference pipeline.
 
-Automated CI/CD pipelines
+## Database
 
-🚀 Features
+The project uses SQLite through SQLAlchemy.
 
-1 . AI Features
+The `Ticket` model defines the following fields:
 
-Automatic ticket classification
+- `id`: Primary key
+- `message`: Ticket message
+- `category`: Classified ticket category
+- `sentiment`: Detected sentiment
+- `priority`: Assigned priority
+- `summary`: Generated text excerpt
 
-Sentiment analysis
+Database tables are initialized when the FastAPI application starts.
 
-Priority prediction
+## Kafka Event Streaming
 
-Ticket summarization
+Apache Kafka is configured in KRaft mode using Docker Compose, with internal and external listeners.
 
-2 . Backend Features
+The intended event flow is:
 
-REST APIs using FastAPI
+1. A ticket event is published to the `support-tickets` topic.
+2. A Kafka consumer receives the event.
+3. Downstream processing can analyze the ticket and persist its results.
 
-SQLite database integration
+Verify the producer, consumer, and analysis integration before claiming that all three steps execute automatically.
 
-Kafka producer and consumer
+## Monitoring and Observability
 
-Real-time event streaming
+The backend uses `prometheus-fastapi-instrumentator` to expose metrics at:
 
-3 . DevOps & MLOps Features
+`http://localhost:8000/metrics`
 
-Docker containerization
+The Prometheus configuration scrapes the `backend:8000/metrics` target every five seconds when the backend is reachable using that service name on the same network.
 
-Kubernetes deployment
+## CI/CD Pipeline
 
-Helm chart packaging
+The GitHub Actions workflow includes:
 
-GitHub Actions CI/CD
+1. Installing backend dependencies.
+2. Running automated tests with pytest.
+3. Running Pylint against the application package.
+4. Building a backend Docker image after the test job succeeds.
+5. Authenticating to Docker Hub using repository secrets.
+6. Pushing the image tagged `v1`.
 
-Prometheus metrics collection
+The configured Docker Hub credentials should be stored in GitHub Actions secrets rather than committed to the repository.
 
-Grafana dashboards
+## Deployment Resources
 
-4 . Frontend Features
+The repository includes:
 
-React + Vite dashboard
+- `docker-compose.yml` for local multi-service setup
+- A backend Dockerfile
+- Kubernetes YAML resources
+- A Helm chart with `Chart.yaml`, `values.yaml`, and templates
+- `monitoring/prometheus.yml` for Prometheus scrape configuration
 
-Ticket submission UI
+These resources support containerization and deployment workflows. Confirm successful deployment in each target environment before documenting it as currently running.
 
-Live ticket display
+## Run Locally
 
-Priority and sentiment visualization
+### Prerequisites
 
+- Python compatible with the backend requirements
+- Docker and Docker Compose
+- Node.js and npm for the frontend
 
-🛠️ Tech Stack
+### Start the backend and Kafka
 
-Layer	Technology
+From the project root:
 
-Frontend	   ---->     React + Vite
+```bash
+docker compose up --build -d
+docker compose ps
+```
 
-Backend	     ---->     FastAPI
+Inspect backend logs if a service does not start:
 
-Database	   ---->     SQLite
+```bash
+docker compose logs --tail=100 backend
+```
 
-Streaming	   ---->     Kafka KRaft
+### Open the API documentation
 
-Containerization	---->  Docker
+When the backend is running, visit:
 
-Orchestration	 ---->   Kubernetes
+- API documentation: `http://localhost:8000/docs`
+- Metrics endpoint: `http://localhost:8000/metrics`
 
-Packaging	   ---->     Helm
+### Start the frontend
 
-CI/CD	    ---->        GitHub Actions
+Open a terminal in the frontend directory containing `package.json`:
 
-Monitoring	 ---->     Prometheus + Grafana
+```bash
+npm install
+npm run dev
+```
 
-API Testing	  ---->    Swagger UI
+Use the local URL printed by Vite.
 
-Testing	   ---->       pytest
+## Testing and Code Quality
 
-Code Quality	---->    pylint
+Run the backend checks from the backend directory:
+
+```bash
+pytest
+pylint app
+```
+
+The GitHub Actions workflow runs these checks as part of the CI pipeline.
+
+## Project Structure
+
+```text
+customer_support_ai/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── backend/
+│   ├── app/
+│   │   ├── database/
+│   │   ├── kafka/
+│   │   ├── routes/
+│   │   ├── schemas/
+│   │   ├── ai_service.py
+│   │   └── main.py
+│   ├── tests/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── tickets.db
+├── customer-support-ai/
+│   ├── templates/
+│   ├── charts/
+│   ├── Chart.yaml
+│   └── values.yaml
+├── frontend/
+├── monitoring/
+│   └── prometheus.yml
+├── docker-compose.yml
+└── README.md
+```
+
+## Future Improvements
+
+- Integrate the Kafka consumer with the ticket-analysis pipeline.
+- Replace keyword heuristics with validated NLP models where appropriate.
+- Improve neutral-sentiment handling and priority levels.
+- Add robust error handling, logging, and integration tests.
+- Validate monitoring targets and deployment manifests in their target environments.
+- Add end-to-end tests covering ticket creation, analysis, and persistence.
